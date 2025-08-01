@@ -29,6 +29,7 @@ def GetUrl():
 
 def GetData():
     global Data
+    Data.clear()
     #設立http請求時需要的headers，避免伺服器被判定為爬蟲而擋住
     upheaders = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}
     #向http請求獲取網頁原始碼
