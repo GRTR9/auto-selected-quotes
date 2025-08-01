@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Auto-selected Quotes</title>
+	<link rel="shortcut icon" href="Base.ico" />
+    <meta charset="utf-8">
+    <script type="text/javascript" src="eel.js"></script>   <!-- eel.js 這個是必需的  -->
+	<style>
+		body{
+			background-color: #1F1F1D;
+			color: #F5F5F7;
+			font-family: calibri, 標楷體;
+			margin: 0;
+			padding: 0;
+			overflow-y: hidden;
+		}
+		
+		#check{
+			width: 100px;
+		}
+		
+		#refresh{
+            height: 37px;
+			background-color: transparent;
+			border:none;	
+			padding: 0 0 0 0;
+			/* border-radius: 5px 5px 5px 5px; */
+		}
+		
+		#tab {
+    		background-color: transparent;
+			height: 100vh;
+		}
+		
+		#sentence{
+			white-space: pre-wrap;
+		}
+		
+		.tab-content-1{
+			display:flex;
+			align-items: center;
+			justify-content: center;
+			text-align:left;
+			padding: 0 100px;
+		}
+		.tab-content-1 p{
+			font-size: 30px;
+		}
+		
+		/* 頁籤ul */
+		#tab > ul {
+			/* overflow: hidden; */
+			margin: 0;
+			padding: 10px 20px 0 20px;
+		}
+
+		#tab > ul > li {
+			list-style-type: none;
+			height: 100%;
+		}
+
+		/* 頁籤上的文字 */
+		#tab > ul > li > a { 
+			text-decoration: none;
+			font-size: 15px;
+			color: #F5F5F7;
+			float: left;
+			padding: 10px;
+			margin-left: 5px;
+		}
+
+		/*頁籤div內容*/
+		#tab > div {
+			clear: both;
+			height: 0;
+			visibility: hidden;
+			padding: 0 100px;
+		}
+
+		/*第一筆的底色*/
+		span:target ~ #tab > ul li:first-child a {
+			background: transparent;
+		}
+
+		span:target ~ #tab > div:first-of-type {
+			visibility: hidden;
+			height: 0;
+			min-height: 0%;
+		}
+
+		/*頁籤變換&第一筆*/
+		span ~ #tab > ul li:first-child a,
+		#tab-1:target ~ #tab > ul li a[href$="#tab-1"],
+		#tab-2:target ~ #tab > ul li a[href$="#tab-2"] {
+			background-color: #CF9A23;
+			border-radius: 5px 5px 5px 5px;
+		}
+
+		/* span ~ #tab > ul li:first-child a::before,
+		#tab-1:target ~ #tab > ul li a[href$="#tab-1"]::before,
+		#tab-2:target ~ #tab > ul li a[href$="#tab-2"]::before {
+			background-color: white;
+			height: 100%;
+		} */
+
+		/*頁籤內容顯示&第一筆*/
+		span ~ #tab > div:first-of-type,
+		#tab-1:target ~ #tab > div.tab-content-1,
+		#tab-2:target ~ #tab > div.tab-content-2 {
+			visibility: visible;
+			/* min-height: 100vh; */
+			height: calc(100vh - 45px);
+			background: #1f1f1d;
+		}
+
+		span {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<span id="tab-1">主頁</span>
+	<span id="tab-2">設定</span>
+	
+	<div id="tab">
+		<ul>
+			<li><a href="#tab-1">主頁</a></li>
+			<li><a href="#tab-2" onClick="js_Reloadsetting()">設定</a></li>
+		</ul>
+		<button id="refresh" onClick="js_Upsentence()" ><img src="img/refresh.png"></button>
+		<!-- 頁籤的內容區塊 -->
+		<div class="tab-content-1">
+			<p id="sentence" >.</p>
+		</div>
+		
+		<div class="tab-content-2">
+			
+			<br>
+			
+			<table border="0">
+				<tr>
+					<td>網址</td>
+					<td colspan="3"><input type="text" id="url" size="100"></td>
+				</tr>
+				<tr>
+					<td>起始行</td>
+					<td><input type="text" id="startRow" size="50"></td>		
+					<td align="right"><button id="check" onclick="js_Upsetting()">確定</button></td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+		
+    <script type="text/javascript" src="./main.js"></script> <!-- 你的JS檔案  -->
+<!--    -->
+</body>
+
+</html>
